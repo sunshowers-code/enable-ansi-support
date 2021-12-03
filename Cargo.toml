@@ -1,0 +1,9 @@
+[package]
+name = "enable-ansi-support"
+version = "0.1.0"
+edition = "2018"
+license = "MIT"
+readme = "README.md"
+
+[target.'cfg(windows)'.dependencies]
+winapi = { version = "0.3.9", features = ["consoleapi", "errhandlingapi", "fileapi", "handleapi", "winnt"] }
