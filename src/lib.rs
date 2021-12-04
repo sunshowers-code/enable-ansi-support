@@ -8,7 +8,7 @@
 //!
 //! Call `enable_ansi_support` *once*, early on in `main()`, to enable ANSI escape codes generated
 //! by crates like
-//! [`ansi_term`](https://docs.rs/ansi_term) or [owo-colors](https://docs.rs/owo-colors)
+//! [`ansi_term`](https://docs.rs/ansi_term) or [`owo-colors`](https://docs.rs/owo-colors)
 //! to work on Windows just like they do on Unix platforms.
 //!
 //! This uses Windows API calls to alter the properties of the console that
