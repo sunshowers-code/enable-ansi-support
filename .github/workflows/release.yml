@@ -24,7 +24,7 @@ jobs:
           CARGO_REGISTRY_TOKEN: ${{ secrets.CARGO_REGISTRY_TOKEN }}
       - uses: taiki-e/create-gh-release-action@v1
         with:
-          title: $version
+          title: enable-ansi-support $version
           branch: main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
