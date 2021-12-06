@@ -24,6 +24,7 @@ jobs:
           CARGO_REGISTRY_TOKEN: ${{ secrets.CARGO_REGISTRY_TOKEN }}
       - uses: taiki-e/create-gh-release-action@v1
         with:
+          changelog: CHANGELOG.md
           title: enable-ansi-support $version
           branch: main
         env:

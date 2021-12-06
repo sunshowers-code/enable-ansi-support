@@ -3,7 +3,7 @@
 
 //! Enable ANSI code support on Windows 10 and above.
 //!
-//! This crate provides one function, `enable_ansi_support`, which allows ANSI escape codes
+//! This crate provides one function, `enable_ansi_support`, which allows [ANSI escape codes]
 //! to work on Windows 10 and above.
 //!
 //! Call `enable_ansi_support` *once*, early on in `main()`, to enable ANSI escape codes generated
@@ -11,24 +11,35 @@
 //! [`ansi_term`](https://docs.rs/ansi_term) or [`owo-colors`](https://docs.rs/owo-colors)
 //! to work on Windows just like they do on Unix platforms.
 //!
-//! ## Example
+//! ## Examples
 //!
-//! ```
+//! ```rust
 //! fn main() {
-//!     enable_ansi_support::enable_ansi_support();
+//!     match enable_ansi_support::enable_ansi_support() {
+//!         Ok(()) => {
+//!             // ANSI escape codes were successfully enabled, or this is a non-Windows platform.
+//!         }
+//!         Err(_) => {
+//!             // The operation was unsuccessful, typically because it's running on an older
+//!             // version of Windows. The program may choose to disable ANSI color code output in
+//!             // this case.
+//!         }
+//!     }
 //!
-//!     // use your terminal color library of choice here
+//!     // Use your terminal color library of choice here.
 //! }
 //! ```
 //!
-//! ## More Info
+//! ## How it works
 //!
-//! This uses Windows API calls to alter the properties of the console that
+//! `enable_ansi_support` uses Windows API calls to alter the properties of the console that
 //! the program is running in. See the
 //! [Windows documentation](https://docs.microsoft.com/en-us/windows/console/console-virtual-terminal-sequences)
 //! for more information.
 //!
 //! On non-Windows platforms, `enable_ansi_support` is a no-op.
+//!
+//! [ANSI escape codes]: https://en.wikipedia.org/wiki/ANSI_escape_code
 #![allow(clippy::needless_doctest_main)]
 
 /// Enables ANSI code support on Windows 10.
@@ -37,13 +48,9 @@
 ///
 /// On non-Windows platforms, this is a no-op that always returns `Ok(())`.
 ///
-/// ## Example
+/// # Examples
 ///
-/// ```
-/// fn main() {
-///     enable_ansi_support::enable_ansi_support();
-/// }
-/// ```
+/// See the [crate documentation](crate).
 #[cfg(windows)]
 pub fn enable_ansi_support() -> Result<(), u32> {
     // ref: https://docs.microsoft.com/en-us/windows/console/console-virtual-terminal-sequences#EXAMPLE_OF_ENABLING_VIRTUAL_TERMINAL_PROCESSING @@ https://archive.is/L7wRJ#76%
@@ -104,13 +111,9 @@ pub fn enable_ansi_support() -> Result<(), u32> {
 ///
 /// On non-Windows platforms, this is a no-op that always returns `Ok(())`.
 ///
-/// ## Example
+/// # Examples
 ///
-/// ```
-/// fn main() {
-///     enable_ansi_support::enable_ansi_support();
-/// }
-/// ```
+/// See the [crate documentation](crate).
 #[cfg(not(windows))]
 #[inline]
 pub fn enable_ansi_support() -> Result<(), u32> {
