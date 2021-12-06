@@ -13,19 +13,23 @@ Call `enable_ansi_support` *once*, early on in `main()`, to enable ANSI escape c
 [`ansi_term`](https://docs.rs/ansi_term) or [`owo-colors`](https://docs.rs/owo-colors) to work on Windows just like they
 do on Unix platforms.
 
-This uses Windows API calls to alter the properties of the console that the program is running in. See the [Windows
-documentation](https://docs.microsoft.com/en-us/windows/console/console-virtual-terminal-sequences) for more
-information.
-
 On non-Windows platforms, `enable_ansi_support` is a no-op.
 
 ## Example
 
 ```rust
 fn main() {
-    enable_ansi_support::enable_ansi_support();
-
-    // use your terminal color library of choice here
+    match enable_ansi_support::enable_ansi_support() {
+        Ok(()) => {
+            // ANSI escape codes were successfully enabled, or this is a non-Windows platform.
+        }
+        Err(_) => {
+            // The operation was unsuccessful, typically because it's running on an older
+            // version of Windows. The program may choose to disable ANSI color code output in
+            // this case.
+        }
+    }
+    // Use your terminal color library of choice here.
 }
 ```
 
