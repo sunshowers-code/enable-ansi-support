@@ -19,6 +19,16 @@ information.
 
 On non-Windows platforms, `enable_ansi_support` is a no-op.
 
+## Example
+
+```rust
+fn main() {
+    enable_ansi_support::enable_ansi_support();
+
+    // use your terminal color library of choice here
+}
+```
+
 ## Minimum supported Rust version
 
 The minimum supported Rust version (MSRV) is **1.41**. Unless there's a compelling reason to update it, it is most

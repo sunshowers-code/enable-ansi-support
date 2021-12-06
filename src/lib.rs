@@ -11,18 +11,39 @@
 //! [`ansi_term`](https://docs.rs/ansi_term) or [`owo-colors`](https://docs.rs/owo-colors)
 //! to work on Windows just like they do on Unix platforms.
 //!
+//! ## Example
+//!
+//! ```
+//! fn main() {
+//!     enable_ansi_support::enable_ansi_support();
+//!
+//!     // use your terminal color library of choice here
+//! }
+//! ```
+//!
+//! ## More Info
+//!
 //! This uses Windows API calls to alter the properties of the console that
 //! the program is running in. See the
 //! [Windows documentation](https://docs.microsoft.com/en-us/windows/console/console-virtual-terminal-sequences)
 //! for more information.
 //!
 //! On non-Windows platforms, `enable_ansi_support` is a no-op.
+#![allow(clippy::needless_doctest_main)]
 
 /// Enables ANSI code support on Windows 10.
 ///
 /// Returns the Windows error code if unsuccessful.
 ///
 /// On non-Windows platforms, this is a no-op that always returns `Ok(())`.
+///
+/// ## Example
+///
+/// ```
+/// fn main() {
+///     enable_ansi_support::enable_ansi_support();
+/// }
+/// ```
 #[cfg(windows)]
 pub fn enable_ansi_support() -> Result<(), u32> {
     // ref: https://docs.microsoft.com/en-us/windows/console/console-virtual-terminal-sequences#EXAMPLE_OF_ENABLING_VIRTUAL_TERMINAL_PROCESSING @@ https://archive.is/L7wRJ#76%
@@ -82,6 +103,14 @@ pub fn enable_ansi_support() -> Result<(), u32> {
 /// Returns the Windows error code if unsuccessful.
 ///
 /// On non-Windows platforms, this is a no-op that always returns `Ok(())`.
+///
+/// ## Example
+///
+/// ```
+/// fn main() {
+///     enable_ansi_support::enable_ansi_support();
+/// }
+/// ```
 #[cfg(not(windows))]
 #[inline]
 pub fn enable_ansi_support() -> Result<(), u32> {
