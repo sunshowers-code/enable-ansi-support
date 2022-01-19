@@ -12,5 +12,5 @@ This project adheres to [Semantic Versioning](https://semver.org).
 
 - Initial release.
 
-[0.1.1]: https://github.com/sunshowers/cargo-search2/releases/tag/0.1.1
-[0.1.0]: https://github.com/sunshowers/cargo-search2/releases/tag/0.1.0
+[0.1.1]: https://github.com/sunshowers-code/enable-ansi-support/releases/tag/0.1.1
+[0.1.0]: https://github.com/sunshowers-code/enable-ansi-support/releases/tag/0.1.0

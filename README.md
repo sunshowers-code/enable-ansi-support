@@ -1,8 +1,8 @@
 # enable-ansi-support: Enable ANSI escape code support on Windows 10
 
 [![enable-ansi-support on crates.io](https://img.shields.io/crates/v/enable-ansi-support)](https://crates.io/crates/enable-ansi-support)
-[![Documentation (latest release)](https://docs.rs/enable-ansi-support/badge.svg)](https://docs.rs/enable-ansi-support/)
-[![Documentation (main)](https://img.shields.io/badge/docs-main-59f)](https://sunshowers.github.io/enable-ansi-support/rustdoc/enable_ansi_support/)
+[![Documentation (latest release)](https://img.shields.io/badge/docs-latest%20release-brightgreen.svg)](https://docs.rs/enable-ansi-support/)
+[![Documentation (main)](https://img.shields.io/badge/documentation-main-purple.svg)](https://sunshowers-code.github.io/enable-ansi-support/rustdoc/enable_ansi_support/)
 [![License](https://img.shields.io/badge/license-Apache-green.svg)](LICENSE-APACHE)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 

@@ -5,7 +5,7 @@ version = "0.1.1"
 edition = "2018"
 license = "MIT"
 readme = "README.md"
-repository = "https://github.com/sunshowers/enable-ansi-support"
+repository = "https://github.com/sunshowers-code/enable-ansi-support"
 
 [target.'cfg(windows)'.dependencies]
 winapi = { version = "0.3.9", features = ["consoleapi", "errhandlingapi", "fileapi", "handleapi", "winnt"] }
