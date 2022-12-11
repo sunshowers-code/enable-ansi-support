@@ -15,25 +15,14 @@ jobs:
     env:
       RUSTFLAGS: -D warnings
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
+      - uses: dtolnay/rust-toolchain@stable
         with:
-          # By default actions/checkout checks out a merge commit. Prefer the PR tip instead.
-          # https://github.com/actions/checkout#checkout-pull-request-head-commit-instead-of-merge-commit
-          ref: ${{ github.event.pull_request.head.sha }}
-      - uses: actions-rs/toolchain@v1
-        with:
-          toolchain: stable
           components: rustfmt, clippy
       - name: Lint (rustfmt)
-        uses: actions-rs/cargo@v1
-        with:
-          command: xfmt
-          args: --check
+        run: cargo xfmt --check
       - name: Lint (clippy)
-        uses: actions-rs/cargo@v1
-        with:
-          command: clippy
-          args: --all-features --all-targets
+        run: cargo clippy --all-features --all-targets
 
   build:
     name: Build and test
@@ -47,20 +36,12 @@ jobs:
     env:
       RUSTFLAGS: -D warnings
     steps:
-      - uses: actions/checkout@v2
-        with:
-          ref: ${{ github.event.pull_request.head.sha }}
-      - uses: actions-rs/toolchain@v1
+      - uses: actions/checkout@v3
+      - uses: dtolnay/rust-toolchain@master
         with:
           toolchain: ${{ matrix.rust-version }}
-          override: true
-
+          components: rustfmt, clippy
       - name: Build
-        uses: actions-rs/cargo@v1
-        with:
-          command: build
+        run: cargo build
       - name: Test
-        uses: actions-rs/cargo@v1
-        with:
-          command: test
-          args: --all-features
+        run: cargo test --all-features
