@@ -18,6 +18,7 @@
 //!     match enable_ansi_support::enable_ansi_support() {
 //!         Ok(()) => {
 //!             // ANSI escape codes were successfully enabled, or this is a non-Windows platform.
+//!             println!("\x1b[31mHello, world\x1b[0m");
 //!         }
 //!         Err(_) => {
 //!             // The operation was unsuccessful, typically because it's running on an older
@@ -44,7 +45,7 @@
 
 /// Enables ANSI code support on Windows 10.
 ///
-/// Returns the Windows error code if unsuccessful.
+/// Returns an [`io::Error`](std::io::Error) with the Windows error code in it if unsuccessful.
 ///
 /// On non-Windows platforms, this is a no-op that always returns `Ok(())`.
 ///
@@ -52,19 +53,18 @@
 ///
 /// See the [crate documentation](crate).
 #[cfg(windows)]
-pub fn enable_ansi_support() -> Result<(), u32> {
+pub fn enable_ansi_support() -> Result<(), std::io::Error> {
     // ref: https://docs.microsoft.com/en-us/windows/console/console-virtual-terminal-sequences#EXAMPLE_OF_ENABLING_VIRTUAL_TERMINAL_PROCESSING @@ https://archive.is/L7wRJ#76%
 
-    use std::{ffi::OsStr, iter::once, os::windows::ffi::OsStrExt, ptr::null_mut};
-    use winapi::um::{
-        consoleapi::{GetConsoleMode, SetConsoleMode},
-        errhandlingapi::GetLastError,
-        fileapi::{CreateFileW, OPEN_EXISTING},
-        handleapi::INVALID_HANDLE_VALUE,
-        winnt::{FILE_SHARE_WRITE, GENERIC_READ, GENERIC_WRITE},
-    };
+    use std::{ffi::OsStr, iter::once, os::windows::ffi::OsStrExt};
 
-    const ENABLE_VIRTUAL_TERMINAL_PROCESSING: u32 = 0x0004;
+    use windows_sys::Win32::{
+        Foundation::INVALID_HANDLE_VALUE,
+        Storage::FileSystem::{
+            CreateFileW, FILE_GENERIC_READ, FILE_GENERIC_WRITE, FILE_SHARE_WRITE, OPEN_EXISTING,
+        },
+        System::Console::{GetConsoleMode, SetConsoleMode, ENABLE_VIRTUAL_TERMINAL_PROCESSING},
+    };
 
     unsafe {
         // ref: https://docs.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-createfilew
@@ -73,21 +73,21 @@ pub fn enable_ansi_support() -> Result<(), u32> {
             OsStr::new("CONOUT$").encode_wide().chain(once(0)).collect();
         let console_handle = CreateFileW(
             console_out_name.as_ptr(),
-            GENERIC_READ | GENERIC_WRITE,
+            FILE_GENERIC_READ | FILE_GENERIC_WRITE,
             FILE_SHARE_WRITE,
-            null_mut(),
+            std::ptr::null(),
             OPEN_EXISTING,
             0,
-            null_mut(),
+            0,
         );
         if console_handle == INVALID_HANDLE_VALUE {
-            return Err(GetLastError());
+            return Err(std::io::Error::last_os_error());
         }
 
         // ref: https://docs.microsoft.com/en-us/windows/console/getconsolemode
-        let mut console_mode: u32 = 0;
+        let mut console_mode = 0;
         if 0 == GetConsoleMode(console_handle, &mut console_mode) {
-            return Err(GetLastError());
+            return Err(std::io::Error::last_os_error());
         }
 
         // VT processing not already enabled?
@@ -97,7 +97,7 @@ pub fn enable_ansi_support() -> Result<(), u32> {
                 console_handle,
                 console_mode | ENABLE_VIRTUAL_TERMINAL_PROCESSING,
             ) {
-                return Err(GetLastError());
+                return Err(std::io::Error::last_os_error());
             }
         }
     }
@@ -107,7 +107,7 @@ pub fn enable_ansi_support() -> Result<(), u32> {
 
 /// Enables ANSI code support on Windows 10.
 ///
-/// Returns the Windows error code if unsuccessful.
+/// Returns an [`io::Error`](std::io::Error) with the Windows error code in it if unsuccessful.
 ///
 /// On non-Windows platforms, this is a no-op that always returns `Ok(())`.
 ///
@@ -116,6 +116,6 @@ pub fn enable_ansi_support() -> Result<(), u32> {
 /// See the [crate documentation](crate).
 #[cfg(not(windows))]
 #[inline]
-pub fn enable_ansi_support() -> Result<(), u32> {
+pub fn enable_ansi_support() -> Result<(), std::io::Error> {
     Ok(())
 }
