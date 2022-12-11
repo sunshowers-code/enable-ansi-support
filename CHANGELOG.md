@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](https://semver.org).
 
-## [0.2.0] - 2022-12-10
+## [0.2.1] - 2022-12-10
 
 ### Changed
 
@@ -12,6 +12,10 @@ This project adheres to [Semantic Versioning](https://semver.org).
 - Internal implementation now uses the windows-sys crate.
 - MSRV updated to Rust 1.49, and new MSRV policy defined: updates will be considered a breaking
   change.
+
+## [0.2.0] - 2022-12-10
+
+This release encountered a publishing issue.
 
 ## [0.1.2] - 2022-01-19
 
@@ -25,6 +29,7 @@ This project adheres to [Semantic Versioning](https://semver.org).
 
 - Initial release.
 
+[0.2.1]: https://github.com/sunshowers-code/enable-ansi-support/releases/tag/0.2.1
 [0.2.0]: https://github.com/sunshowers-code/enable-ansi-support/releases/tag/0.2.0
 [0.1.2]: https://github.com/sunshowers-code/enable-ansi-support/releases/tag/0.1.2
 [0.1.1]: https://github.com/sunshowers-code/enable-ansi-support/releases/tag/0.1.1

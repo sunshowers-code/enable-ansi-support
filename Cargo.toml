@@ -7,14 +7,7 @@ license = "MIT"
 readme = "README.md"
 repository = "https://github.com/sunshowers-code/enable-ansi-support"
 rust-version = "1.49"
-keywords = [
-    "ansi",
-    "windows",
-    "console",
-    "terminal",
-    "color",
-    "enable-ansi-support",
-]
+keywords = ["ansi", "windows", "console", "terminal", "color"]
 categories = ["command-line-interface", "os::windows-apis"]
 
 [target.'cfg(windows)'.dependencies]
