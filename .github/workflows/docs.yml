@@ -11,16 +11,10 @@ jobs:
     concurrency: ci-${{ github.ref }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions-rs/toolchain@v1
-        with:
-          toolchain: stable
+      - uses: actions/checkout@v3
+      - uses: dtolnay/rust-toolchain@stable
       - name: Build rustdoc
-        uses: actions-rs/cargo@v1
-        with:
-          command: doc
-          # cargo-compare currently pulls in cargo which bloats build times massively
-          args: --all-features
+        run: cargo doc --all-features
       - name: Organize
         run: |
           mkdir target/gh-pages
@@ -31,3 +25,4 @@ jobs:
         with:
           branch: gh-pages
           folder: target/gh-pages
+          single-commit: true
