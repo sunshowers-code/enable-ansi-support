@@ -6,6 +6,21 @@ edition = "2018"
 license = "MIT"
 readme = "README.md"
 repository = "https://github.com/sunshowers-code/enable-ansi-support"
+rust-version = "1.49"
+keywords = [
+    "ansi",
+    "windows",
+    "console",
+    "terminal",
+    "color",
+    "enable-ansi-support",
+]
+categories = ["command-line-interface", "os::windows-apis"]
 
 [target.'cfg(windows)'.dependencies]
-winapi = { version = "0.3.9", features = ["consoleapi", "errhandlingapi", "fileapi", "handleapi", "winnt"] }
+windows-sys = { version = "0.42.0", features = [
+    "Win32_Foundation",
+    "Win32_Storage_FileSystem",
+    "Win32_Security",
+    "Win32_System_Console",
+] }

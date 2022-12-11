@@ -22,6 +22,8 @@ fn main() {
     match enable_ansi_support::enable_ansi_support() {
         Ok(()) => {
             // ANSI escape codes were successfully enabled, or this is a non-Windows platform.
+            // Use your terminal color library of choice here.
+            println!("\x1b[31mHello, world\x1b[0m");
         }
         Err(_) => {
             // The operation was unsuccessful, typically because it's running on an older
@@ -29,14 +31,13 @@ fn main() {
             // this case.
         }
     }
-    // Use your terminal color library of choice here.
 }
 ```
 
 ## Minimum supported Rust version
 
-The minimum supported Rust version (MSRV) is **1.41**. Unless there's a compelling reason to update it, it is most
-likely going to stay at 1.41 forever.
+The minimum supported Rust version (MSRV) is **1.49**. The MSRV will be updated sparingly, and any
+update to it will be considered a breaking change.
 
 ## License and credits
 
