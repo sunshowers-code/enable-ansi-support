@@ -36,7 +36,7 @@ fn main() {
 
 ## Minimum supported Rust version
 
-The minimum supported Rust version (MSRV) is **1.49**. The MSRV will be updated sparingly, and any
+The minimum supported Rust version (MSRV) is **1.71**. The MSRV will be updated sparingly, and any
 update to it will be considered a breaking change.
 
 ## License and credits

@@ -78,7 +78,7 @@ pub fn enable_ansi_support() -> Result<(), std::io::Error> {
             std::ptr::null(),
             OPEN_EXISTING,
             0,
-            0,
+            std::ptr::null_mut(),
         );
         if console_handle == INVALID_HANDLE_VALUE {
             return Err(std::io::Error::last_os_error());

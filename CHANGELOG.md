@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](https://semver.org).
 
+## [0.3.0] - upcoming
+
+- `windows-sys` dependency updated to version `0.61.0`
+- MSRV updated to Rust 1.71
+
 ## [0.2.1] - 2022-12-10
 
 ### Changed

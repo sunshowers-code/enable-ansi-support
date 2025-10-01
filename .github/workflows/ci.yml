@@ -33,8 +33,8 @@ jobs:
     strategy:
       matrix:
         os: [ windows-latest, ubuntu-latest ]
-        # 1.49 is the MSRV
-        rust-version: [ 1.49, stable ]
+        # 1.71 is the MSRV
+        rust-version: [ 1.71, stable ]
       fail-fast: false
     env:
       RUSTFLAGS: -D warnings
