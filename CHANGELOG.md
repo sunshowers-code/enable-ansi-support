@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](https://semver.org).
 
+## [0.3.1] - 2025-10-02
+
+- Bump Rust edition to 2021.
+
 ## [0.3.0] - 2025-10-02
 
 - `windows-sys` dependency updated to version `0.61.0`.
@@ -34,6 +38,7 @@ This release encountered a publishing issue.
 
 - Initial release.
 
+[0.3.1]: https://github.com/sunshowers-code/enable-ansi-support/releases/tag/0.3.1
 [0.3.0]: https://github.com/sunshowers-code/enable-ansi-support/releases/tag/0.3.0
 [0.2.1]: https://github.com/sunshowers-code/enable-ansi-support/releases/tag/0.2.1
 [0.2.0]: https://github.com/sunshowers-code/enable-ansi-support/releases/tag/0.2.0
