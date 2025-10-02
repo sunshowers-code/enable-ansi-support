@@ -63,7 +63,7 @@ pub fn enable_ansi_support() -> Result<(), std::io::Error> {
         Storage::FileSystem::{
             CreateFileW, FILE_GENERIC_READ, FILE_GENERIC_WRITE, FILE_SHARE_WRITE, OPEN_EXISTING,
         },
-        System::Console::{GetConsoleMode, SetConsoleMode, ENABLE_VIRTUAL_TERMINAL_PROCESSING},
+        System::Console::{ENABLE_VIRTUAL_TERMINAL_PROCESSING, GetConsoleMode, SetConsoleMode},
     };
 
     unsafe {
