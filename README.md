@@ -36,8 +36,7 @@ fn main() {
 
 ## Minimum supported Rust version
 
-The minimum supported Rust version (MSRV) is **1.71**. The MSRV will be updated sparingly, and any
-update to it will be considered a breaking change.
+The minimum supported Rust version (MSRV) is **1.71**. The MSRV will be updated sparingly.
 
 ## License and credits
 
@@ -57,7 +56,7 @@ with minor modifications. The upstream code is used under the terms of the MIT l
 >
 > The above copyright notice and this permission notice shall be included in all
 > copies or substantial portions of the Software.
-> 
+>
 > THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 > IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 > FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
