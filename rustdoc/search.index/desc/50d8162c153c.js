@@ -1,0 +1,1 @@
+rd_("CaEnable ANSI code support on Windows 10 and above.BhEnables ANSI code support on Windows 10.")
